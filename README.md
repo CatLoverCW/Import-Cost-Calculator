@@ -1,5 +1,5 @@
 # Import-Cost-Calculator
-This was my first solo project as a student in my computer science class in secondary school, around 2-3 months after it began. This project's goal was to showcase our experience with HTML, CSS and hosting data on the cloud (specifically Firebase).
+This was my first solo project as a student in my computer science class in secondary school, around 2-3 months after it began (started classes in September 2024, completed project in Novemeber 2024). This project's goal was to showcase our experience with HTML, CSS and hosting data on the cloud (specifically Firebase).
 
 This whole project is pretty bad if you look at it through a lens of it being an actual tool to calculate the cost of importing something lolz, since its missing a lot of vital things that would make it realistically function without giving a wrong estimation to the user. But, as a way to demonstrate my programming skills after 2 months of me beginning to program, I think it's pretty good in that respect.
 

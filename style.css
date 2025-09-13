@@ -1,0 +1,216 @@
+/* Body of the page & its styling */
+body 
+{
+    background-image: url('images/green-background.png'');
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    padding: 0;
+    margin:0;
+}   
+
+/* Title of the page & its styling */
+.title {
+    position: relative;
+    left: 800px;
+    font-size: 2rem;
+    font-style:normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    width: 300px;
+    height: 100px;
+    padding:16px 16px 16px 16px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+/* Text over buttons */
+.valBut{
+    position: relative;
+    left: 50px;
+    top: -300px;
+    font-size: 1.5rem;
+    font-style:normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    width: 300px;
+    height: 100px;
+    padding:16px 16px 16px 16px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+/* Text explaing what the table is about */
+.valTab{
+    position: relative;
+    left: 440px;
+    top: -441px;
+    font-size: 1.5rem;
+    font-style:normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    width: 300px;
+    height: 100px;
+    padding:16px 16px 16px 16px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+/* Text over the plotly graph */
+.calcButs{
+    position: relative;
+    left: 1450px;
+    top: -575px;
+    font-size: 1.5rem;
+    font-style:normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    width: 300px;
+    height: 100px;
+    padding:16px 16px 16px 16px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+/* Table on the page & its styling */
+table {
+    position: relative;
+    left: 450px;
+    top: 300px;
+    font-size: 1rem;
+    font-style: normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    display: table;
+    width: 200px;
+    height: 320px;
+    padding:5px 5px 5px 5px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+th, td{
+    height: 50px;
+    border: 2px solid #2e650a;
+    border-radius: 25px;
+}
+
+/* The box where you input the VAT */
+.vatIn {
+    position: relative;
+    left: 125px;
+    bottom: 900px;
+    font-size: 1rem;
+    font-style: normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    display: table;
+    width: 25px;
+    height: 25px;
+    padding:5px 5px 5px 5px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;  
+}
+
+/* The box where you input the cost */
+.costIn {
+    position: relative;
+    left: 125px;
+    bottom: 950px;
+    font-size: 1rem;
+    font-style: normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    display: table;
+    width: 100px;
+    height: 50px;
+    padding:5px 5px 5px 5px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;  
+}
+
+/* The plotly graph */
+#plotlyGraph{
+    position: relative;
+    left: 1370px;
+    top: -1400px;
+    font-size: 1.5rem;
+    font-style:normal;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+/* Styling for buttons on the page */
+button{
+    position: relative;
+    right: -1150px;
+    bottom: 980px;
+    font-size: 1rem;
+    font-style: normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    display: table;
+    width: 200px;
+    height: 100px;
+    padding:5px 5px 5px 5px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+/*  Displaying the VAT values and types */
+#vatValuesContainer{
+    position: relative;
+    left: 850px;
+    bottom: 1600px;
+    font-size: 1.5rem;
+    font-style:normal;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    width: 200px;
+    height: 300px;
+    padding:16px 16px 16px 16px;
+    border: 5px solid #2e650a;
+    border-radius: 25px;
+}
+
+#vatValuesContainer h2 {
+    font-size: 18px; 
+    margin-bottom: 10px; 
+}
+
+#vatValuesList {
+    list-style-type: none; 
+    padding: 0; 
+}
+  
+  #vatValuesList li {
+    padding: 5px 0; 
+    border-bottom: 1px solid #ddd; 
+}
+  
+  #vatValuesList li:last-child {
+    border-bottom: none; /* Remove bottom border from last item */
+}

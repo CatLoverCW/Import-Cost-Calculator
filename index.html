@@ -1,0 +1,189 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+      <link rel="stylesheet" href="style.css">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>Import Cost Calculator</title>
+  </head>
+  <html>
+  <body>
+    <!--  Button linking to the write-up -->
+    <a href="writeup.html" id="writeup" >Write-up <i class="fa fa-info"></i> </a>
+
+    <!-- Title of the page -->
+    <div class ='title'>Import Cost Calculator</div>
+
+    <!-- Table listing out items that fall under different VAT rates -->
+    <table>
+      <tr>
+        <th>Standard</th>
+        <th>Reduced</th>
+        <th>Zero</th>
+      </tr>
+      <tr>
+        <td>Furniture</td>
+        <td>Take-away Food</td> 
+        <td>Food & Drink</td>
+      </tr>
+      <tr>
+        <td>Batteries</td>
+        <td>Art & Antiques</td>
+        <td>Medicine</td>
+      </tr>
+      <tr>
+          <td>Motor Vehicles</td>
+          <td>Photographic Supplies</td>
+          <td>Sanitary Products</td>
+      </tr>
+    </table> 
+<br></br>
+
+Ans: <a id = "Result"> --- </a>
+
+<!-- Text that will be over buttons -->
+<div class="valBut">
+  <p>Values entered here</p>
+</div>
+
+<!-- Text that will be over the table -->
+<div class="valTab">
+  <p1>Items and their VAT rate</p1>
+</div>
+
+<!-- Text that will be over the where the calculations will take place -->
+<div class="calcButs">
+  <p2>Calculate the final result</p2>
+</div>
+
+<!-- The Plotly graph will go in this div -->
+<div id="Graph" style="width: 90%; height: 400px;"></div> 
+
+<!-- Button to retrieve and show VAT values -->
+<div>
+<button id="vatVal" onclick="showData()"> Retrieve VAT values</button>
+</div>
+
+  <!-- Asking user for the total value of their item-->
+<div class="costIn">
+  <input id="costIn" placeHolder="Cost Of the Item">
+</div>
+
+  <!-- asks user which VAT their item falls under -->
+  <div class="vatIn">
+    <input id="vatIn" placeHolder="VAT percentage">
+  </div>
+
+  <!-- Calculates the final cost of the item cost by the VAT rate -->
+  <br>
+  <button id="calc" onclick="calculateCosts()">Calculate</button>
+  <br>
+
+  <!-- Div where the Plotly graph will be -->
+  <div id = "plotlyGraph" style="width: 90%;">
+  </div>
+
+  <br>
+  <!-- Container where the VAT values will be stored and hidden to the user -->
+<div id='vatValuesContainer' style='display: none;'>
+  <h2>VAT Values:</h2>
+  <ul id='vatValuesList'></ul>
+  
+</div>
+  </body>
+
+  </html>
+  <!-- Installs the firebase and plotly module -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the database
+    var database = firebase.database();
+
+    // Retrieve data once from a specific path
+    function showData(){
+    database.ref('/VATS').once('value')
+      .then(function(snapshot) {
+        var data = snapshot.val();
+  
+
+    // A container the VATS are stored in.
+    // The purpose of this container is to contain the VAT values until a button is pressed
+    var vatContainer = document.getElementById('vatValuesContainer');
+    vatContainer.style.display = 'block';
+    
+    // Select the HTML element to display the VAT values
+    var vatList = document.getElementById('vatValuesList');
+    vatList.innerHTML = ''; // Clears any existing content
+
+    // Loop through the data and create list items for each VAT entry
+      for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+          var listItem = document.createElement('li');
+          listItem.textContent = `${key}: ${data[key]}%`;
+          vatList.appendChild(listItem);
+          }
+        }
+      })
+      .catch(function(error) {
+        console.error('Error fetching data: ', error);
+      });
+  }
+    // Define a function to calculate the answer
+    function calculateCosts() {
+    var costIn = parseFloat(document.getElementById("costIn").value);
+    var vatIn = parseFloat(document.getElementById("vatIn").value);
+
+    // Checking if both inputs are valid numbers
+    if (isNaN(costIn) || isNaN(vatIn)) {
+      document.getElementById("Result").innerText = "Please enter valid numbers for total cost and VAT.";
+      return;
+    }
+    // Calculating the total cost including VAT
+    var answer = costIn + (costIn * vatIn );
+    
+    // Taking away the original item cost away from the final cost to see how much the VAT added on
+    var vatAmount = answer - costIn;
+
+    // If the value is over 800, a customs duty of 12% is added on
+    var duty = (answer > 800) ? answer * 0.12 : 0;
+
+    // Displaying the final result (result is rounded to 2 decimals due to money not going any lower in value)
+    document.getElementById("Result").innerText = answer.toFixed(2);
+
+    // Call drawPlotly with the correct values
+    drawPlotly(costIn, vatAmount, duty);
+
+  }
+
+    function drawPlotly(costIn, vatAmount, duty){
+    // Data for the pie chart
+    var data = [{
+      values: [costIn, vatAmount, duty], 
+      labels: ['Cost of the item', 'VAT amount', 'Duty'],
+      type: 'pie',
+    }];
+  
+    // Graph layout
+    var layout = {
+      height:300,
+      width: 500,
+      title:'Cost Breakdown'
+    };
+
+    // Draw Graph
+    Plotly.newPlot("plotlyGraph", data, layout); 
+    
+  }
+  </script>

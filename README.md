@@ -6,6 +6,7 @@ This whole project is pretty bad if you look at it through a lens of it being an
 This shouldn't be used as an actual import cost calculator (obviously haha), I'm mainly just uploading this here to mark the beginning of were I started to program. I also think it'd be a great way to gauge the progress I've made with my programming ability and knowledge as they both improve :)
 
 <-- DISCLAIMER -->
+Plotly is a dependency featured in this project, so download it if you haven't. (This program won't work I bet either way since I haven't done a peice of maintenance since I handed it up XD) 
 
 This project relies on a Firebase that contains the values for the cost of an item to be multiplied by. It really doesn't matter much since the user had to input this value manually and the firebase only displayed and revealed the values to the user. But if you want you could create a Firebase with the values for each different type of VAT and then paste its configuration. You could also just use the list below, which contains the VAT values below to multiply the cost of an item haha.
 
